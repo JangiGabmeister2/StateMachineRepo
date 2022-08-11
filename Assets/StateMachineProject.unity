@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1210563361}
-  _speed: 4.9
+  _speed: 3
   _waypoints:
   - {fileID: 1934315754}
   - {fileID: 1953164772}
@@ -249,7 +249,7 @@ MonoBehaviour:
   - {fileID: 1454774992}
   - {fileID: 222935120}
   - {fileID: 394535720}
-  _waypointIndex: 1
+  _waypointIndex: 0
 --- !u!212 &309961486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abf72d4a8b567f4b8719d1fe646c92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 0
+  _state: 3
 --- !u!1 &394535719
 GameObject:
   m_ObjectHideFlags: 0

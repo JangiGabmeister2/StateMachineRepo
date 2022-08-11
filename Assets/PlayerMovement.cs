@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    private StateMachine stator;
     public float playerSpeed = 0.02f;
     void Update()
     {

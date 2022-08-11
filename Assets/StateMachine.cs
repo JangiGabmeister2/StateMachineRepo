@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AIAgent))]
+
 public class StateMachine : MonoBehaviour
 {
     public enum state
     {
         Patrol,
-        Search,
         Chase,
-        BerryPicking
+        BerryPicking,
+        RandomPatrol,
+        Orbit
     }
 
     [SerializeField] private state _state;
 
+    private AIAgent _aiAgent;
+
     void Start()
     {
+        _aiAgent = GetComponent<AIAgent>();
         NextState();
     }
 
@@ -41,14 +47,17 @@ public class StateMachine : MonoBehaviour
             case state.Patrol:
                 StartCoroutine(PatrolState());
                 break;
-            case state.Search:
-                StartCoroutine(SearchState());
-                break;
             case state.Chase:
                 StartCoroutine(ChaseState());
                 break;
             case state.BerryPicking:
                 StartCoroutine(BerryPickingState());
+                break;
+            case state.RandomPatrol:
+                StartCoroutine(RandomPatrolState());
+                break;
+            case state.Orbit:
+                StartCoroutine(OrbitState());
                 break;
             default:
                 Debug.LogWarning("State does not exist in NextState function, stopping StateMachine");
@@ -60,9 +69,14 @@ public class StateMachine : MonoBehaviour
     private IEnumerator PatrolState()
     {
         Debug.Log("Patrol: Enter");
+        _aiAgent.Search();
         while (_state == state.Patrol)
         {
-            //Our code runs here.
+            _aiAgent.Patrol();
+            if (_aiAgent.IsPlayerInRange())
+            {
+                _state = state.Chase;
+            }
             yield return null; //wait a single frame
         }
         Debug.Log("Patrol: Exit");
@@ -74,7 +88,7 @@ public class StateMachine : MonoBehaviour
         while (_state == state.BerryPicking)
         {
             //Our code runs here.
-            yield return null; //wait a single frame
+            yield return null;
         }
         Debug.Log("Berry Picking: Exit");
         NextState();
@@ -84,22 +98,42 @@ public class StateMachine : MonoBehaviour
         Debug.Log("Chase: Enter");
         while (_state == state.Chase)
         {
-            //Our code runs here.
-            yield return null; //wait a single frame
+            _aiAgent.ChasePlayer();
+            if (!_aiAgent.IsPlayerInRange())
+            {
+                _state = state.Patrol;
+            }
+            yield return null;
         }
         Debug.Log("Chase: Exit");
         NextState();
     }
-    private IEnumerator SearchState()
+    private IEnumerator RandomPatrolState()
     {
-        Debug.Log("Search: Enter");
-        while (_state == state.Search)
+        Debug.Log("AI is patrolling randomly");
+        while (_state == state.RandomPatrol)
         {
-            //Our code runs here.
-            yield return null; //wait a single frame
+            _aiAgent.RandomPatrol();
+            if (_aiAgent.IsPlayerInRange())
+            {
+                _state = state.Chase;
+            }
+            yield return null;
         }
-        Debug.Log("Search: Exit");
+        Debug.Log("AI is no longer patrolling randomly");
         NextState();
+    }
+    private IEnumerator OrbitState()
+    {
+        Debug.Log("AI is orbiting you");
+        while (_state == state.RandomPatrol)
+        {
+            _aiAgent.OrbitPlayer();
+            yield return null;
+        }
+        Debug.Log("AI is no longer orbiting you");
+        NextState();
+        yield return null;
     }
     #endregion
 }
