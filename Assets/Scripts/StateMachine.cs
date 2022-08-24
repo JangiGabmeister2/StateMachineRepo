@@ -15,7 +15,7 @@ public class StateMachine : MonoBehaviour
         Orbit
     }
 
-    [SerializeField] private state _state;
+    [SerializeField] state _state;
 
     private AIAgent _aiAgent;
 
