@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour
+public class StatusChangeAI : MonoBehaviour
 {
     public Text healthText;
-    public int health, maxHealth;
+    public int health;
+    private bool ishealthmaxHealth;
+    public int maxHealth;
 
     public void Start()
     {
-        healthText.text = "Health: " + health.ToString();
+        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
+
+        if (ishealthmaxHealth)
+        {
+            health = maxHealth;
+        }   
     }
 
     public void Damage(int damageAmount)
@@ -23,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         {
             health -= damageAmount;
         }
-        healthText.text = "Health: " + health.ToString();
+        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
     }
 
     public void Heal(int healAmount)
@@ -36,6 +43,6 @@ public class EnemyAI : MonoBehaviour
         {
             health += healAmount;
         }
-        healthText.text = "Health: " + health.ToString();
+        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
     }
 }
