@@ -7,10 +7,20 @@ public class EnemyAI : MonoBehaviour
 {
     public Text healthText;
     public int health, maxHealth;
+    private bool isDead;
+    public Button healthButton, damageButton;
 
     public void Start()
     {
         healthText.text = "Health: " + health.ToString();
+    }
+
+    public void Update()
+    {
+        if (isDead)
+        {
+
+        }
     }
 
     public void Damage(int damageAmount)
