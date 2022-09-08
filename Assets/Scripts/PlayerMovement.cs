@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         NewMovement();
-        //OldMovement();
     }
 
     void NewMovement()
@@ -24,36 +23,36 @@ public class PlayerMovement : MonoBehaviour
         transform.position += (Vector3) move;
     }
 
-    void OldMovement()
-    {
-        //Camera.main.transform.position = playerPosition;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            Vector2 playerPosition = transform.position;
-            playerPosition.y += playerSpeed * Time.deltaTime;
-            transform.position = playerPosition;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            Vector2 playerPosition = transform.position;
-            playerPosition.x += playerSpeed * Time.deltaTime;
-            transform.position = playerPosition;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            Vector2 playerPosition = transform.position;
-            playerPosition.x -= playerSpeed * Time.deltaTime;
-            transform.position = playerPosition;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            Vector2 playerPosition = transform.position;
-            playerPosition.y -= playerSpeed * Time.deltaTime;
-            transform.position = playerPosition;
-        }
-    }
+    //void OldMovement()
+    //{
+    //    Camera.main.transform.position = playerPosition;
+    //
+    //    if (Input.GetKey(KeyCode.W))
+    //    {
+    //        Vector2 playerPosition = transform.position;
+    //        playerPosition.y += playerSpeed * Time.deltaTime;
+    //        transform.position = playerPosition;
+    //    }
+    //
+    //    if (Input.GetKey(KeyCode.D))
+    //    {
+    //        Vector2 playerPosition = transform.position;
+    //        playerPosition.x += playerSpeed * Time.deltaTime;
+    //        transform.position = playerPosition;
+    //    }
+    //
+    //    if (Input.GetKey(KeyCode.A))
+    //    {
+    //        Vector2 playerPosition = transform.position;
+    //        playerPosition.x -= playerSpeed * Time.deltaTime;
+    //        transform.position = playerPosition;
+    //    }
+    //
+    //    if (Input.GetKey(KeyCode.S))
+    //    {
+    //        Vector2 playerPosition = transform.position;
+    //        playerPosition.y -= playerSpeed * Time.deltaTime;
+    //        transform.position = playerPosition;
+    //    }
+    //}
 }
