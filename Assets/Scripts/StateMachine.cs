@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AIAgent))]
-
 public class StateMachine : MonoBehaviour
 {
     public enum state
@@ -19,7 +17,7 @@ public class StateMachine : MonoBehaviour
 
     private AIAgent _aiAgent;
 
-    void Start()
+    public void Start()
     {
         _aiAgent = GetComponent<AIAgent>();
         NextState();

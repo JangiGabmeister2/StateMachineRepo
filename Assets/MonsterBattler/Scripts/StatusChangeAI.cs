@@ -7,17 +7,11 @@ public class StatusChangeAI : MonoBehaviour
 {
     public Text healthText;
     public int health;
-    private bool ishealthmaxHealth;
     public int maxHealth;
 
     public void Start()
     {
-        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
-
-        if (ishealthmaxHealth)
-        {
-            health = maxHealth;
-        }   
+        healthText.text = $"Health: {health} / {maxHealth}";
     }
 
     public void Damage(int damageAmount)
