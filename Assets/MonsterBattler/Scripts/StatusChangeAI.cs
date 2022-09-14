@@ -24,7 +24,7 @@ public class StatusChangeAI : MonoBehaviour
         {
             health -= damageAmount;
         }
-        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
+        healthText.text = $"Health: {health} / {maxHealth}";
     }
 
     public void Heal(int healAmount)
@@ -37,6 +37,6 @@ public class StatusChangeAI : MonoBehaviour
         {
             health += healAmount;
         }
-        healthText.text = $"Health: {health.ToString()} / {maxHealth.ToString()}";
+        healthText.text = $"Health: {health} / {maxHealth}";
     }
 }
