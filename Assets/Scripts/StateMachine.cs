@@ -25,21 +25,6 @@ public class StateMachine : MonoBehaviour
 
     private void NextState()
     {
-        /*
-        if (_state == state.Patrol)
-        {
-            StartCoroutine(PatrolState());
-        }
-        else
-        {
-            if (_state == state.BerryPicking)
-            {
-                yada yada
-            }
-        }
-        */
-        //instead of making a long list of if else statements, use switch statements
-
         switch (_state)
         {
             case state.Patrol:
